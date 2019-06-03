@@ -10,10 +10,9 @@ fn main() {
     let mut lower_bound = 1;
     let mut upper_bound = 100;
 
-    let secret_number = rand::thread_rng().gen_range(1, 101);
-    println!("The secret number is: {}", secret_number);
-
-    println!("I'm thinking of a number between 1 and 100. Can you guess what it is?");
+    let secret_number = rand::thread_rng().gen_range(lower_bound, upper_bound + 1);
+    //println!("The secret number is: {}", secret_number);
+    println!("I'm thinking of a number between {} and {}. Can you guess what it is?", lower_bound, upper_bound);
 
     loop {
         if tries >= MAX_TRIES {
@@ -36,8 +35,6 @@ fn main() {
             Ok(num) => num,
             Err(_) => continue,
         };
-
-        //println!("you guessed {}", guess);
 
         match guess.cmp(&secret_number) {
             Ordering::Less => {
